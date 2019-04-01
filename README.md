@@ -52,3 +52,7 @@ There are 2 easy ways to launch this project:
     "password": "string"
 }
 ```
+
+
+## How to extend
+You can easily modify the model by just going to the `auth.models.User` class and add new fields using the django ORM specification. This project will work along with https://github.com/Tibiritabara/django-auth-connector
