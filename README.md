@@ -42,6 +42,7 @@ There are 2 easy ways to launch this project:
 * Install pipenv easily by doing `$ python3.7 -m pip install --user pipenv`
 * On the project folder run `$ pipenv install`
 * Activate the environment by running `$ pipenv shell`
+* Apply migrations by calling `$ pipenv run python manage.py migrate`
 * Create a user using django manage.py command `$ pipenv run python manage.py createsuperuser` and follow the assistant.
 * Run the server by executing `$ pipenv run python manage.py runserver`
 * Access `localhost:8000/api/schema`
