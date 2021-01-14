@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
 from django.http import JsonResponse
-from rest_framework import status, generics, permissions
+from django.shortcuts import render
+from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+
 from .serializers import UserSerializer
 
 

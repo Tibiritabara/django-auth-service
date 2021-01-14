@@ -2,9 +2,13 @@
 Custom user routes and endpoints
 """
 from django.urls import path
-from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token, verify_jwt_token
-from .views import UserView  # we must implement this
+from rest_framework_jwt.views import (
+    obtain_jwt_token,
+    refresh_jwt_token,
+    verify_jwt_token,
+)
 
+from .views import UserView  # we must implement this
 
 urlpatterns = [
     # endpoints from Django REST framework JWT package

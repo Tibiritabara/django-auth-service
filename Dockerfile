@@ -33,4 +33,4 @@ RUN python manage.py createsuperuser --noinput --email admin@example.com
 
 EXPOSE 8080
 
-CMD ["gunicorn", "-b :8080", "auth.wsgi"]
+CMD ["gunicorn", "--preload", "--bind=0.0.0.0:8080", "--log-level=warning", "auth.wsgi"]

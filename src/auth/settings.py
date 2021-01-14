@@ -21,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mze1&*&=j1$^*zw3dm&1^!hm*gq_osp0++p18*f-e=)kpo=-r*'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = True
+DEBUG = os.getenv('DEBUG') == "True"
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authapi.apps.AuthapiConfig',
+    'authapi',
     'rest_framework',
-    'rest_framework_swagger',
+    'drf_yasg',
     'corsheaders',
+    'graphene_django',
 ]
 
 
@@ -154,5 +155,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = os.getenv('STATIC_CONTENT_URL', '/static/')
 STATIC_ROOT = 'static/'
+
+# Graphene
+GRAPHENE = {
+    'SCHEMA': 'auth.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+
+# Authentication config
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

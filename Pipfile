@@ -4,16 +4,22 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
+pylint-django = "*"
 commitizen = "*"
+autopep8 = "*"
+pre-commit = "*"
 
 [packages]
 django = "*"
 djangorestframework = "*"
 djangorestframework-jwt = "*"
-django-rest-swagger = "*"
+drf-yasg = "*"
 django-cors-headers = "*"
 gunicorn = "*"
+pyjwt = "<2.0.0"
+graphene-django = "*"
+django-filter = "*"
+django-graphql-jwt = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

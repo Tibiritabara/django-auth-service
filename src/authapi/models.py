@@ -2,9 +2,8 @@
 This module will override the way django creates users and the way it handles 
 usernames and emails.
 """
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.models import BaseUserManager
 
 
 class UserManager(BaseUserManager):
@@ -79,10 +78,16 @@ class User(AbstractUser):
     # don't use username
     username = None
 
-    email = models.EmailField('Email address of the user.', unique=True)
+    email = models.EmailField(
+        'Email address of the user.', 
+        unique=True,
+    )
 
     phone_number = models.CharField(
-        'Phone number of the user', null=True, max_length=15)
+        'Phone number of the user', 
+        null=True, 
+        max_length=15,
+    )
 
     USERNAME_FIELD = 'email'
 

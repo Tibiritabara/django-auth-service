@@ -1,12 +1,14 @@
 """
 Tests related with user operations
 """
+import json
+
 from django.test import TestCase
-from user.models import User
+from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework_jwt import utils
-from rest_framework import status
-import json
+
+from authapi.models import User
 
 
 # Create your tests here.
