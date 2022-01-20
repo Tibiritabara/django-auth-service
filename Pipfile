@@ -10,7 +10,7 @@ autopep8 = "*"
 pre-commit = "*"
 
 [packages]
-django = "*"
+django = "==3"
 djangorestframework = "*"
 djangorestframework-jwt = "*"
 drf-yasg = "*"
@@ -22,4 +22,4 @@ django-filter = "*"
 django-graphql-jwt = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

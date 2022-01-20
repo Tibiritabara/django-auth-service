@@ -1,21 +1,17 @@
-FROM python:alpine3.7
+FROM python:3.9-slim
 
+RUN apt-get update && apt-get upgrade -y
 
-RUN apk update && apk upgrade
-
-RUN apk add --no-cache --virtual .build-dependencies \
-    build-base \
+RUN apt-get install -y \
+    build-essential \
     gcc \
-    wget
-
-RUN apk add --no-cache \
+    wget \
     libffi-dev \
-    xmlsec-dev \
-    musl-dev \
-    libressl-dev \
-    git
+    xmlsec1 \
+    musl \
+    libssl-dev
 
-RUN python3.7 -m pip install pipenv
+RUN python -m pip install pipenv
 
 WORKDIR /app
 
@@ -23,14 +19,14 @@ ADD Pipfile Pipfile.lock /app/
 
 RUN pipenv install --system --deploy --ignore-pipfile
 
-ADD . /app
+COPY src/. /app
 
-ARG ADMIN_PASSWORD=123456789
+# ARG ADMIN_PASSWORD=123456789
 
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
-RUN python manage.py createsuperuser --noinput --email admin@example.com
+# RUN python manage.py migrate
 
-EXPOSE 8080
+# RUN python manage.py collectstatic --noinput
+
+# RUN python manage.py createsuperuser --noinput --email admin@example.com
 
 CMD ["gunicorn", "--preload", "--bind=0.0.0.0:8080", "--log-level=warning", "auth.wsgi"]
